@@ -49,10 +49,3 @@ export const pickerSelect=(item)=>{
   }
 
 }
-
-  // export const addTask=(txt)=>{
-  //   return (dispatch,getState)=>{
-  //     const {tasks}=getState().countereducer;
-  //     dispatch({type:"addtask",payload:{tasks:tasks.push(txt)}})
-  //   }
-  // }
