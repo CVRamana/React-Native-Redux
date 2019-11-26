@@ -6,7 +6,9 @@ const screenwidth = Dimensions.get('window').width
 class ChatPage extends Component {
 
   static navigationOptions = {
-   header:null
+  tabBarVisible:false,
+   header:null,
+
   };
  
 

@@ -20,7 +20,7 @@ profilepic:{
    height:50,
    width:50,
    borderRadius:25,
-   backgroundColor:'grey' 
+ //  backgroundColor:'grey' 
 },
 photo:{
     height:30,

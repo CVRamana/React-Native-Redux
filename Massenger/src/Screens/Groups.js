@@ -9,7 +9,7 @@ class Groups extends Component {
     this.state = {
     };
   }
-
+  
   render() {
     return (
       <View style={styles.Groups}>

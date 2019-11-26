@@ -9,6 +9,7 @@ import { connect } from 'react-redux'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { createStackNavigator } from 'react-navigation-stack';
 import ChatPage from './ChatPage';
+import Status from './Status';
 //import { TouchableOpacity } from 'react-native-gesture-handler';
 Ionicons.loadFont()
 //import reducer from '../Reducer/index'
@@ -20,7 +21,7 @@ class Home extends Component {
       };
     render() {
         return (
-            <View>
+            <View style={{flex:1}}>
                 <View style={styles.header}>
                     <View style={{
                         flexDirection: "row", padding: 20,
@@ -65,21 +66,32 @@ class Home extends Component {
                         data={this.props.recent_Chats}
                         horizontal={true}
                         renderItem={({ item }) => {
-                            return (<View style={{ paddingLeft: 20, paddingBottom: 10, }}>
+                            return (
+                                <TouchableOpacity
+                                onPress={()=>{this.props.navigation.navigate('status',{
+                                    item_pic:item.pic,
+                                    item_name:item.name
+                                })}}
+                                >
+                            <View style={{ paddingLeft: 20, paddingBottom: 10, }}>
                                 <Image
                                     style={styles.profilepic}
                                     source={item.pic}
                                 />
                                 <Text> {item.name}</Text>
                             </View>
+                            </TouchableOpacity>
                             )
                         }}
                     />
                 </View>
                 {/* //Chats */}
-                <View style={{ alignItems: "center", }}>
+                <View style={{ alignItems: "center",
+              //  backgroundColor:'red'
+                 }}>
                     <FlatList
                         data={this.props.live_Chats}
+                        contentContainerStyle={{flexGrow:1, marginBottom:100}}
                         renderItem={({ item }) => {
                             return (
                                 //Sending the data to other screen
@@ -92,7 +104,7 @@ class Home extends Component {
                                             name: item.name,
                                         });
                                     }}
-                                >
+                                 >
                                     <View style={{
                                         width: screenwidth / 1.1,
                                         flexDirection: "row",
@@ -154,6 +166,7 @@ const AppNavigator = createStackNavigator(
        // Chat_nav:TabNavigator,
         Home: HomeScreen,
         Chat: ChatPage,
+        status:Status
     },
     {
         initialRouteName: 'Home',
@@ -163,8 +176,7 @@ const AppNavigator = createStackNavigator(
 //tab navigater
 const TabNavigator = createBottomTabNavigator(
     {
-        ChatNavigation:AppNavigator,
-        Home: HomeScreen,
+        Home: AppNavigator,
         Groups: Groups,
         History: History
     },

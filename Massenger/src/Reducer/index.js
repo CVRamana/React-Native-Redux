@@ -3,7 +3,7 @@ import { combineReducers } from "redux";
 const intialState = {
   //counter: 0,
   recent_Chats:[
-      {pic:require("../Images/plus.png"),name:'Raman1'},
+      {pic:require("../Images/plus.png"),name:'Add...'},
       {pic:require("../Images/women2.jpg"),name:'Raman2'},
       {pic:require("../Images/women5.jpg"),name:'Raman3'},
       {pic:require("../Images/women6.jpg"),name:'Raman4'},
