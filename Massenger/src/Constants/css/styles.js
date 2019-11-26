@@ -4,7 +4,7 @@ const screenwidth=Dimensions.get('window').width
 const styles=StyleSheet.create({
 header:{
 //backgroundColor:"#f67f",
-paddingTop:50,
+paddingTop:20,
 paddingBottom: 20,
 
 },
