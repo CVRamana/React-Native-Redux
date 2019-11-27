@@ -1,6 +1,9 @@
 PODS:
   - boost-for-react-native (1.63.0)
+  - Crashlytics (3.14.0):
+    - Fabric (~> 1.10.2)
   - DoubleConversion (1.1.6)
+  - Fabric (1.10.2)
   - FBLazyVector (0.61.5)
   - FBReactNativeSpec (0.61.5):
     - Folly (= 2018.10.22.00)
@@ -283,6 +286,15 @@ PODS:
     - React-cxxreact (= 0.61.5)
     - React-jsi (= 0.61.5)
     - ReactCommon/jscallinvoker (= 0.61.5)
+  - RNFirebase (5.5.6):
+    - Firebase/Core
+    - React
+    - RNFirebase/Crashlytics (= 5.5.6)
+  - RNFirebase/Crashlytics (5.5.6):
+    - Crashlytics
+    - Fabric
+    - Firebase/Core
+    - React
   - RNGestureHandler (1.5.1):
     - React
   - RNImageCropPicker (0.26.1):
@@ -326,6 +338,7 @@ DEPENDENCIES:
   - React-RCTVibration (from `../node_modules/react-native/Libraries/Vibration`)
   - ReactCommon/jscallinvoker (from `../node_modules/react-native/ReactCommon`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
+  - RNFirebase (from `../node_modules/react-native-firebase/ios`)
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNImageCropPicker (from `../node_modules/react-native-image-crop-picker`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
@@ -335,6 +348,8 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - boost-for-react-native
+    - Crashlytics
+    - Fabric
     - Firebase
     - FirebaseAnalytics
     - FirebaseCore
@@ -398,6 +413,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/Libraries/Vibration"
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
+  RNFirebase:
+    :path: "../node_modules/react-native-firebase/ios"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
   RNImageCropPicker:
@@ -411,7 +428,9 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
+  Crashlytics: 540b7e5f5da5a042647227a5e3ac51d85eed06df
   DoubleConversion: 5805e889d232975c086db112ece9ed034df7a0b2
+  Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
   FBLazyVector: aaeaf388755e4f29cd74acbc9e3b8da6d807c37f
   FBReactNativeSpec: 118d0d177724c2d67f08a59136eb29ef5943ec75
   Firebase: 458d109512200d1aca2e1b9b6cf7d68a869a4a46
@@ -447,6 +466,7 @@ SPEC CHECKSUMS:
   React-RCTText: 9ccc88273e9a3aacff5094d2175a605efa854dbe
   React-RCTVibration: a49a1f42bf8f5acf1c3e297097517c6b3af377ad
   ReactCommon: 198c7c8d3591f975e5431bec1b0b3b581aa1c5dd
+  RNFirebase: ac0de8b24c6f91ae9459575491ed6a77327619c6
   RNGestureHandler: 7add966bb5d90ee8cf38d4341f87814474357972
   RNImageCropPicker: e1d8c3381e5b05a1bdcd13ea57a4f1c020a09cef
   RNReanimated: b2ab0b693dddd2339bd2f300e770f6302d2e960c
@@ -454,6 +474,6 @@ SPEC CHECKSUMS:
   RSKImageCropper: a446db0e8444a036b34f3c43db01b2373baa4b2a
   Yoga: f2a7cd4280bfe2cca5a7aed98ba0eb3d1310f18b
 
-PODFILE CHECKSUM: d4c392f8a23f742489b58846e53ecc11d8ec139e
+PODFILE CHECKSUM: cc35f1c3e3867313a4a595bbcfd7ed49fce8fcda
 
 COCOAPODS: 1.8.4

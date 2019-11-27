@@ -64,7 +64,8 @@ class Home extends Component {
                                 />
                             </TouchableOpacity>
                             <TouchableOpacity
-                            onPress={()=>this.props.navigation.navigate('Edit_profile')}
+                            onPress={()=>this.props.navigation.navigate('Edit_profile',{})}
+                            
                             >
                             <Image
                                 style={styles.edit}

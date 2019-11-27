@@ -8,6 +8,8 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux'
 import { incrementCounter, decrementCounter, updateInputVal, addTask, radioButton, pickerSelect } from '../Action/index';
+import CheckBoxComp from '../Components/CheckBoxComp';
+import RadioButtonComp from '../Components/RadioButtonComp';
 
 
 class Home extends Component {
@@ -53,35 +55,6 @@ class Home extends Component {
 
                 {/* //making the radio button */}
                 {/* //   {this.props.ischecked ? */}
-                <View style={{ flexDirection: 'row', }}>
-                    <TouchableOpacity
-                        onPress={this.props.radioButton} >
-                        {this.props.ischecked ?
-                            <Image source={require('../../Images/uncheck.png')}
-                                style={{ height: 20, width: 20, margin: 10, }}
-                            /> : <Image source={require('../../Images/check.png')}
-                                style={{ height: 20, width: 20, margin: 10, }}
-                            />}
-                            
-                    </TouchableOpacity>
-                    <Text style={{ margin: 10, }}>Male </Text>
-                </View>
-
-                <View style={{ flexDirection: 'row', }}>
-                    <TouchableOpacity
-                        onPress={this.props.radioButton}>
-                        {this.props.ischecked ?
-                            <Image style={{ height: 20, width: 20, margin: 10, }}
-                                source={require('../../Images/check.png')}
-                            /> :
-                            <Image source={require('../../Images/uncheck.png')}
-                                style={{ height: 20, width: 20, borderRadius: 10, margin: 10, }} />
-                        }
-
-                    </TouchableOpacity>
-                    <Text style={{ margin: 10, }}>Female </Text>
-                </View>
-
                 <Button
                     title="Add Task"
                     onPress={this.props.addTask}
@@ -106,7 +79,11 @@ class Home extends Component {
                         <Picker.Item label="Angular" value="Angular" />
                     </Picker>
                     </View>
+
+                    <CheckBoxComp />
                     {/* flatlist goes here */}
+                    <RadioButtonComp />
+
                     
                     <FlatList
                     data={this.props.tasks}
@@ -123,8 +100,7 @@ class Home extends Component {
                     />
 
                 </View>
-            </View>
-           
+            </View> 
         );
     }
 }
