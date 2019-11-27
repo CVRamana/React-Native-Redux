@@ -43,6 +43,13 @@ photo:{
 backgroundColor:"yellow",
 flex: 1,
  },
+ g_child:
+ {
+   paddingTop:60,
+   height:screenHeight/1.11,
+   //backgroundColor:"grey"
+
+ },
  History:{
   backgroundColor:"pink",flex: 1,
  }

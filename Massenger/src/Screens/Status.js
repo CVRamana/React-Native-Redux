@@ -1,19 +1,15 @@
 import React, { Component } from 'react';
 import { View, Text, Image, Dimensions, Button, ProgressViewIOS } from 'react-native';
 
-
-
 sw = Dimensions.get('window').width
 sh = Dimensions.get('window').height
 class Status extends Component {
     constructor(props) {
         super(props)
-
         this.state = {
             Progress_Value: 0.00
         };
     };
-
 
     static navigationOptions = {
         header: null
@@ -21,7 +17,6 @@ class Status extends Component {
 
     componentDidMount() {
         this.Start_Progress()
-       
     }
 
     Start_Progress = () => {
@@ -64,16 +59,13 @@ class Status extends Component {
                     alignItems: "center",
                     flexDirection: "row"
                 }}>
-                    <Button
-                        title="Back"
-                        onPress={() => { this.props.navigation.navigate('Home') }}
-                    />
+                  
                     <Image
                         style={{
                             height: 50,
                             width: 50,
                             borderRadius: 25,
-                            backgroundColor: "red",
+                          //  backgroundColor: "red",
                             marginRight: sw / 15
                         }}
                         source={uri=navigation.getParam('item_pic')}
@@ -84,6 +76,11 @@ class Status extends Component {
                 <ProgressViewIOS
                 progressViewStyle='bar'
                  progress={this.state.Progress_Value} />
+                 <Image
+                 style={{height:sh/1.2,width:sw/1}}
+
+                 source={uri=navigation.getParam('item_pic')}
+                 />
             </View>
         );
     }

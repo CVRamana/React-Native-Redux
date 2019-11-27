@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Image,Button, Dimensions } from 'react-native';
+import { View, Text, Image,Button, Dimensions,ImageBackground } from 'react-native';
 //import ConfiguredHeaderComponent from '../Components/ConfiguredHeaderComponent';
 const screenHeight = Dimensions.get('window').height
 const screenwidth = Dimensions.get('window').width
@@ -15,6 +15,9 @@ class ChatPage extends Component {
   render() {
     const { navigation } = this.props
     return (
+      <ImageBackground source={require('../Images/background.jpg')} style={{width: '100%', height: '100%'}}>
+  
+  
       <View style={{
         alignItems: 'center',
         paddingTop: screenHeight / 18,
@@ -44,8 +47,6 @@ source={uri=navigation.getParam('itempc')}
           <Text>
            {(navigation.getParam('name'))}
           </Text>
-
-
           <View style={{flexDirection:"row",
           width:screenwidth/3,
        //   backgroundColor:"grey",
@@ -60,9 +61,9 @@ source={uri=navigation.getParam('itempc')}
          source={require('../Images/video.png')}
          />
           </View>
-
         </View>
       </View>
+      </ImageBackground>
     );
   }
 }

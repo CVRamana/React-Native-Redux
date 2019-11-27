@@ -3,12 +3,14 @@ import { View, Text, TextInput, Image, FlatList, Dimensions, TouchableOpacity } 
 import styles from "../Constants/css/styles";
 import { createAppContainer } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
+import ImagePicker from 'react-native-image-crop-picker';
 import Groups from "../Screens/Groups";
 import History from "../Screens/History";
 import { connect } from 'react-redux'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { createStackNavigator } from 'react-navigation-stack';
 import ChatPage from './ChatPage';
+import EditProfile from "./EditProfile";
 import Status from './Status';
 //import { TouchableOpacity } from 'react-native-gesture-handler';
 Ionicons.loadFont()
@@ -18,10 +20,21 @@ const screenwidth = Dimensions.get('window').width
 class Home extends Component {
     static navigationOptions = {
         header: null,
-      };
+    };
+    camara = () => {
+        alert("called")
+        ImagePicker.openCamera({
+            width: 300,
+            height: 400,
+            cropping: true,
+        }).then(image => {
+            console.log(image);
+        });
+    }
+
     render() {
         return (
-            <View style={{flex:1}}>
+            <View style={{ flex: 1 }}>
                 <View style={styles.header}>
                     <View style={{
                         flexDirection: "row", padding: 20,
@@ -39,15 +52,25 @@ class Home extends Component {
                         <View style={{
                             flexDirection: "row",
                         }}>
-                            <Image
-                                style={styles.photo}
-                                source={require('../Images/camera.png')}
-                            />
 
+                            {/* //Camera Permission */}
+
+                            <TouchableOpacity
+                                onPress={this.camara}
+                            >
+                                <Image
+                                    style={styles.photo}
+                                    source={require('../Images/camera.png')}
+                                />
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                            onPress={()=>this.props.navigation.navigate('Edit_profile')}
+                            >
                             <Image
                                 style={styles.edit}
                                 source={require('../Images/edit.png')}
                             />
+                            </TouchableOpacity>
                         </View>
                     </View>
                     <View
@@ -65,46 +88,58 @@ class Home extends Component {
                     <FlatList
                         data={this.props.recent_Chats}
                         horizontal={true}
-                        renderItem={({ item }) => {
+                        keyExtractor={item => item.id}
+                        renderItem={({ item, index }) => {
+                           // console.warn(item, index)
                             return (
                                 <TouchableOpacity
-                                onPress={()=>{this.props.navigation.navigate('status',{
-                                    item_pic:item.pic,
-                                    item_name:item.name
-                                })}}
+                                    onPress={
+                                        () => {
+                                            index != 0 ?
+                                                this.props.navigation.navigate('status', {
+                                                    item_pic: item.pic,
+                                                    item_name: item.name
+                                                })
+                                                : this.camara()
+                                        }
+
+                                    }
                                 >
-                            <View style={{ paddingLeft: 20, paddingBottom: 10, }}>
-                                <Image
-                                    style={styles.profilepic}
-                                    source={item.pic}
-                                />
-                                <Text> {item.name}</Text>
-                            </View>
-                            </TouchableOpacity>
+                                    <View style={{ paddingLeft: 20, paddingBottom: 10, }}>
+                                        <Image
+                                            style={styles.profilepic}
+                                            source={item.pic}
+                                        />
+                                        <Text> {item.name}</Text>
+                                    </View>
+                                </TouchableOpacity>
                             )
                         }}
                     />
                 </View>
                 {/* //Chats */}
-                <View style={{ alignItems: "center",
-              //  backgroundColor:'red'
-                 }}>
+                <View style={{
+                    alignItems: "center",
+                    // backgroundColor:'red',
+                    height: screenHeight / 1.55
+                }}>
                     <FlatList
                         data={this.props.live_Chats}
-                        contentContainerStyle={{flexGrow:1, marginBottom:100}}
+                        contentContainerStyle={{ flexGrow: 1, marginBottom: 100 }}
+                        keyExtractor={item => item.id}
                         renderItem={({ item }) => {
                             return (
                                 //Sending the data to other screen
 
                                 <TouchableOpacity
                                     onPress={() => {
-                                       // alert("pressed")
+                                        // alert("pressed")
                                         this.props.navigation.navigate('Chat', {
                                             itempc: item.pic,
                                             name: item.name,
                                         });
                                     }}
-                                 >
+                                >
                                     <View style={{
                                         width: screenwidth / 1.1,
                                         flexDirection: "row",
@@ -132,8 +167,6 @@ class Home extends Component {
                                             <Image
                                                 style={{ height: 10, width: 10, backgroundColor: "blue", borderRadius: 10 }}
                                             /></View>
-
-
                                     </View>
                                 </TouchableOpacity>
                             )
@@ -153,20 +186,19 @@ const mapStateToProps = (state) => {
     return {
         recent_Chats, live_Chats
     }
-
 }
 
 const HomeScreen = connect(mapStateToProps)(Home);
 
-
-
 // Stack Navigater
 const AppNavigator = createStackNavigator(
-    { 
-       // Chat_nav:TabNavigator,
+    {
+        // Chat_nav:TabNavigator,
         Home: HomeScreen,
         Chat: ChatPage,
-        status:Status
+        status: Status,
+        Edit_profile:EditProfile
+
     },
     {
         initialRouteName: 'Home',
@@ -195,7 +227,6 @@ const TabNavigator = createBottomTabNavigator(
                 else if (routeName === 'History') {
                     iconName = `ios-time`;
                 }
-
                 return <IconComponent name={iconName} size={25} color={tintColor} />;
             },
         }),
@@ -206,6 +237,6 @@ const TabNavigator = createBottomTabNavigator(
     }
 );
 
-export default createAppContainer( TabNavigator);
+export default createAppContainer(TabNavigator);
 
 

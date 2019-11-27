@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text,Dimensions,ScrollView } from 'react-native';
 import styles from '../Constants/css/styles';
-
+sw=Dimensions.get('window').width
+sh=Dimensions.get('window').height
 
 class Groups extends Component {
   constructor(props) {
@@ -13,7 +14,10 @@ class Groups extends Component {
   render() {
     return (
       <View style={styles.Groups}>
-        <Text> Groups </Text>
+        <View style={styles.g_child}>
+         
+          </View>
+      
       </View>
     );
   }
