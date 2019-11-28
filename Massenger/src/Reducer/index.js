@@ -11,7 +11,7 @@ const intialState = {
       {pic:require("../Images/women1.jpg"),name:'Raman7'},
   ],
   live_Chats:[
-    // {pic:require("../Images/plus.png"),name:'Raman1',mssg:'hello!!!'},
+    //{pic:require("../Images/plus.png"),name:'Raman1',mssg:'hello!!!'},
     {pic:require("../Images/women.jpg"),name:'Raman2',mssg:'hello!!!'},
     {pic:require("../Images/women1.jpg"),name:'Raman3',mssg:'hello!!!'},
     {pic:require("../Images/women3.jpg"),name:'Raman4',mssg:'hello!!!'},
@@ -23,7 +23,8 @@ const intialState = {
     {pic:require("../Images/women5.jpg"),name:'Raman5',mssg:'hello!!!'},
     {pic:require("../Images/women2.jpg"),name:'Raman7',mssg:'hello!!!'},
 
-  ]
+  ],
+  
 };
 const myreducer = (state = intialState, action) => {
   switch (action.type) {
